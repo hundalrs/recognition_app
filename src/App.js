@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-/*import Rank from './components/Rank/Rank';*/
 import Title from './components/Title/Title';
+import SearchBar from './components/SearchBar/SearchBar';
 import Particles from 'react-particles-js';
+import Age from './components/Age/Age';
 import axios from 'axios';
+
 import './App.css';
+
 
 const particlesOptions = {
   particles: {
@@ -44,19 +47,33 @@ class App extends Component {
     super();
     this.state = {
       input: '',
-      selectedFile: null
+      imgUrl: '',
+      age: ''
     }
   }
 
-fileSelectedHandler = event => {
-  this.setState({
-    selectedFile: event.target.files[0]
-  })
+onInputChange = (event) => {
+    this.setState({input: event.target.value});
 }
 
-fileUploadHandler = () => {
-  axios.post('');
+onButtonSubmit = () => {
+  this.setState({imgUrl: this.state.input});
+  axios.post('https://api.kairos.com/enroll', {
+      image: this.state.input,
+      subject_id: 'Raman',
+      gallery_name: 'MyGallery'
+  }, {
+    headers: { app_id: 'c8259a0f', app_key: '605e795242124282ca8b0695246a5bc7'}
 }
+).then((response) => {
+  console.log('response', response);
+  console.log('body', response.data);
+  let personAge = response.data.images[0].attributes.age;
+  this.setState({
+    age: personAge
+  });
+  }
+)};
 
   render() {
     return (
@@ -65,14 +82,17 @@ fileUploadHandler = () => {
           params={particlesOptions}
         />
         <Title />
-{/*        <Rank /> /*}
-{/*        <ImageForm onInputChange={this.onInputChange} />*/}
-        <input className='pt6 pb5 center f4' type="file" onChange={this.fileSelectedHandler}/>
-        <button className='w-30 grow f4 link ph3 pv2 dib white bg-red center' onClick={this.fileUploadHandler}>Upload</button>
-        {/*<FaceRecognition />*/}
-      </div>
+        <SearchBar 
+          onInputChange={this.onInputChange}
+          onButtonSubmit={this.onButtonSubmit}
+        />
+        <Age
+          onButtonSubmit={this.onButtonSubmit}
+          age={ this.state.age } 
+        />
+       </div>
     );
-  }
+  } 
 }
 
 export default App;
