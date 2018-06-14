@@ -1,21 +1,98 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Title from './components/Title/Title';
+import SearchBar from './components/SearchBar/SearchBar';
+import Particles from 'react-particles-js';
+import Age from './components/Age/Age';
+import axios from 'axios';
+
 import './App.css';
 
+
+const particlesOptions = {
+  particles: {
+    number: {
+      value: 30,
+      density: {
+        enable: true,
+        value_area: 800
+        }
+      },
+    interactivity: {
+      onhover: {
+        modes: {
+          repulse:
+          {
+            line_linked: {
+              opacity: .6
+            }
+          }
+        },
+      onclick: {
+        enable: true,
+        modes: {
+          push: {
+            line_linked: {
+              opacity: 1
+            }
+          }
+        }
+       }
+      } 
+    }
+  }
+}
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      input: '',
+      imgUrl: '',
+      age: ''
+    }
+  }
+
+onInputChange = (event) => {
+    this.setState({input: event.target.value});
+}
+
+onButtonSubmit = () => {
+  this.setState({imgUrl: this.state.input});
+  axios.post('https://api.kairos.com/enroll', {
+      image: this.state.input,
+      subject_id: 'Raman',
+      gallery_name: 'MyGallery'
+  }, {
+    headers: { app_id: 'c8259a0f', app_key: '605e795242124282ca8b0695246a5bc7'}
+}
+).then((response) => {
+  console.log('response', response);
+  console.log('body', response.data);
+  let personAge = response.data.images[0].attributes.age;
+  this.setState({
+    age: personAge
+  });
+  }
+)};
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <div className='tc'>
+        <Particles className='particles'
+          params={particlesOptions}
+        />
+        <Title />
+        <SearchBar 
+          onInputChange={this.onInputChange}
+          onButtonSubmit={this.onButtonSubmit}
+        />
+        <Age
+          onButtonSubmit={this.onButtonSubmit}
+          age={ this.state.age } 
+        />
+       </div>
     );
-  }
+  } 
 }
 
 export default App;
