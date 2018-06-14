@@ -6,6 +6,10 @@ The goal of this project was to get an app that would guess someone's age based 
 
 I saw this as very ambitious because I did not know React coming into this project, and I gave myself only 48 hours to complete it. In the end, I ended up using 32 hours. Below, you can see my timeline and more about the project.
 
+## Setup
+
+To run this project, please git clone and then run **`npm i`** to install all dependencies. Then, all you have to do is run **`npm start`**.
+
 ## Timeline
 
 ### June 12, 2018
@@ -32,3 +36,7 @@ I saw this as very ambitious because I did not know React coming into this proje
 ## Future
 
 I have hopes of continuing this project to include a file upload feature and a liveshot feature, which would eventually be used to read the emotions of the user based off the picture that is given.
+
+## Author(s)
+
+* Raman Hundal [@hundalrs](http://github.com/hundalrs)
