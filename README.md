@@ -16,7 +16,7 @@ To run this project, please git clone and then, run **`npm i`** to install all d
 
 * 4:00pm - Start Researching
 * 9:30pm - Create repo for project and setup boilerplate with create-react-app
-* 2:00am - have basic frontend up
+* 2:00am - Have basic frontend up
 
 ### June 13, 2018
 
@@ -25,7 +25,7 @@ To run this project, please git clone and then, run **`npm i`** to install all d
 * 6:30pm - Decided to use Kairos api and decided on using public urls for MVP
 * 9:00pm - Made the app look nicer and organized into less components
 * 12:20am - API call is working and prints age on screen
-* 2:30am - all my work is pushed to github
+* 2:30am - All my work is pushed to github
 
 ## Learning Objectives
 
