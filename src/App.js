@@ -4,7 +4,6 @@ import SearchBar from './components/SearchBar/SearchBar';
 import Particles from 'react-particles-js';
 import Age from './components/Age/Age';
 import axios from 'axios';
-
 import './App.css';
 
 
@@ -56,24 +55,29 @@ onInputChange = (event) => {
     this.setState({input: event.target.value});
 }
 
-onButtonSubmit = () => {
+onButtonSubmit = (e) => {
   this.setState({imgUrl: this.state.input});
   axios.post('https://api.kairos.com/enroll', {
       image: this.state.input,
       subject_id: 'Raman',
       gallery_name: 'MyGallery'
   }, {
-    headers: { app_id: APP_ID, app_key: APP_KEY}
+    headers: { app_id: 'c8259a0f', app_key: '605e795242124282ca8b0695246a5bc7'}
 }
 ).then((response) => {
   console.log('response', response);
   console.log('body', response.data);
+  this.setState({input: ''});
+  console.log(this.state.input);
   let personAge = response.data.images[0].attributes.age;
   this.setState({
-    age: personAge
-  });
+    age: personAge,
+    });
   }
-)};
+).catch((error) => {
+  console.log(e);
+  });
+}
 
   render() {
     return (
@@ -90,7 +94,7 @@ onButtonSubmit = () => {
           onButtonSubmit={this.onButtonSubmit}
           age={ this.state.age } 
         />
-       </div>
+        </div>
     );
   } 
 }
