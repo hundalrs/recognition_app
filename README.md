@@ -8,7 +8,7 @@ I saw this as very ambitious because I did not know React coming into this proje
 
 ## Setup
 
-To run this project, please git clone and then run **`npm i`** to install all dependencies. Then, all you have to do is run **`npm start`**.
+To run this project, please git clone and then, run **`npm i`** to install all dependencies. Then, all you have to do is run **`npm start`**.
 
 ## Timeline
 
@@ -24,7 +24,7 @@ To run this project, please git clone and then run **`npm i`** to install all de
 * 5:00pm - Added file upload button and aws s3 support
 * 6:30pm - Decided to use Kairos api and decided on using public urls for MVP
 * 9:00pm - Made the app look nicer and organized into less components
-* 12:20am - API call is sorking and prints age on screen
+* 12:20am - API call is working and prints age on screen
 * 2:30am - all my work is pushed to github
 
 ## Learning Objectives
