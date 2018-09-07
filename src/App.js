@@ -62,7 +62,7 @@ onButtonSubmit = (e) => {
       subject_id: 'Raman',
       gallery_name: 'MyGallery'
   }, {
-    headers: { app_id: 'c8259a0f', app_key: '605e795242124282ca8b0695246a5bc7'}
+    headers: { app_id: APP_ID, app_key: APP_KEY}
 }
 ).then((response) => {
  /* console.log('response', response);
